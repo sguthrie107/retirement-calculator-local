@@ -9,7 +9,7 @@ Track retirement projections, compare them to real balances, and stress-test the
 
 This app is built for one practical question: **How is the plan actually holding up over time?**
 
-> This is a local-only copy. It ships with **fictional sample data** in `data/users.json`. Put your own profile in the git-ignored `data/users.local.json` (see [Local profiles](#core-assumptions)).
+> This is a local-only copy. It ships with **fictional sample data** in `data/users.json`: two 28-year-olds who retire in **2060**, with yearly actual balances tracked since **2020**, a 70% total-market / 30% international allocation (`FZROX` / `FZILX`, Fidelity equivalents of VTI / VXUS) since 2020, and a primary residence that converts to a rental after 12 years. Put your own profile in the git-ignored `data/users.local.json` (see [Local profiles](#core-assumptions)). All outputs are illustrative estimates, not financial advice.
 
 ---
 
