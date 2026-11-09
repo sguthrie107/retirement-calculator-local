@@ -512,10 +512,15 @@ def _blended_portfolio_volatility(
 
 
 def _latest_actual_balance_for_account(db: Session, user_id: int, account_type: str) -> float | None:
+    # Balances stamped after the current year (e.g. sample/projected rows) are not real starting points.
     rows = (
         db.query(ActualBalance)
         .join(Account)
-        .filter(Account.user_id == user_id, Account.account_type == account_type)
+        .filter(
+            Account.user_id == user_id,
+            Account.account_type == account_type,
+            ActualBalance.year <= date.today().year,
+        )
         .order_by(ActualBalance.year.desc(), ActualBalance.recorded_at.desc())
         .all()
     )

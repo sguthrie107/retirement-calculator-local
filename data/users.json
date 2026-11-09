@@ -67,6 +67,146 @@
               "401k": 110100.0,
               "roth_ira": 36700.0
             }
+          },
+          {
+            "year": 2027,
+            "account_balances": {
+              "401k": 140500.0,
+              "roth_ira": 46800.0
+            }
+          },
+          {
+            "year": 2028,
+            "account_balances": {
+              "401k": 157800.0,
+              "roth_ira": 78800.0
+            }
+          },
+          {
+            "year": 2029,
+            "account_balances": {
+              "401k": 195900.0,
+              "roth_ira": 98100.0
+            }
+          },
+          {
+            "year": 2030,
+            "account_balances": {
+              "401k": 210500.0,
+              "roth_ira": 105400.0
+            }
+          },
+          {
+            "year": 2031,
+            "account_balances": {
+              "401k": 252500.0,
+              "roth_ira": 126100.0
+            }
+          },
+          {
+            "year": 2032,
+            "account_balances": {
+              "401k": 302600.0,
+              "roth_ira": 150600.0
+            }
+          },
+          {
+            "year": 2033,
+            "account_balances": {
+              "401k": 365200.0,
+              "roth_ira": 181500.0
+            }
+          },
+          {
+            "year": 2034,
+            "account_balances": {
+              "401k": 435900.0,
+              "roth_ira": 216100.0
+            }
+          },
+          {
+            "year": 2035,
+            "account_balances": {
+              "401k": 484700.0,
+              "roth_ira": 239500.0
+            }
+          },
+          {
+            "year": 2036,
+            "account_balances": {
+              "401k": 496600.0,
+              "roth_ira": 244800.0
+            }
+          },
+          {
+            "year": 2037,
+            "account_balances": {
+              "401k": 585700.0,
+              "roth_ira": 288000.0
+            }
+          },
+          {
+            "year": 2038,
+            "account_balances": {
+              "401k": 656200.0,
+              "roth_ira": 321600.0
+            }
+          },
+          {
+            "year": 2039,
+            "account_balances": {
+              "401k": 767800.0,
+              "roth_ira": 375500.0
+            }
+          },
+          {
+            "year": 2040,
+            "account_balances": {
+              "401k": 869900.0,
+              "roth_ira": 424200.0
+            }
+          },
+          {
+            "year": 2041,
+            "account_balances": {
+              "401k": 980900.0,
+              "roth_ira": 476800.0
+            }
+          },
+          {
+            "year": 2042,
+            "account_balances": {
+              "401k": 1033100.0,
+              "roth_ira": 500900.0
+            }
+          },
+          {
+            "year": 2043,
+            "account_balances": {
+              "401k": 1235900.0,
+              "roth_ira": 597700.0
+            }
+          },
+          {
+            "year": 2044,
+            "account_balances": {
+              "401k": 1479700.0,
+              "roth_ira": 713400.0
+            }
+          },
+          {
+            "year": 2045,
+            "account_balances": {
+              "401k": 1611400.0,
+              "roth_ira": 775000.0
+            }
+          },
+          {
+            "year": 2046,
+            "account_balances": {
+              "401k": 1747500.0,
+              "roth_ira": 838300.0
+            }
           }
         ]
       },
@@ -474,6 +614,146 @@
             "account_balances": {
               "401k": 88100.0,
               "roth_ira": 29400.0
+            }
+          },
+          {
+            "year": 2027,
+            "account_balances": {
+              "401k": 116700.0,
+              "roth_ira": 38900.0
+            }
+          },
+          {
+            "year": 2028,
+            "account_balances": {
+              "401k": 124500.0,
+              "roth_ira": 66100.0
+            }
+          },
+          {
+            "year": 2029,
+            "account_balances": {
+              "401k": 144000.0,
+              "roth_ira": 78300.0
+            }
+          },
+          {
+            "year": 2030,
+            "account_balances": {
+              "401k": 162800.0,
+              "roth_ira": 90500.0
+            }
+          },
+          {
+            "year": 2031,
+            "account_balances": {
+              "401k": 194400.0,
+              "roth_ira": 109700.0
+            }
+          },
+          {
+            "year": 2032,
+            "account_balances": {
+              "401k": 220000.0,
+              "roth_ira": 125500.0
+            }
+          },
+          {
+            "year": 2033,
+            "account_balances": {
+              "401k": 247600.0,
+              "roth_ira": 142800.0
+            }
+          },
+          {
+            "year": 2034,
+            "account_balances": {
+              "401k": 271600.0,
+              "roth_ira": 157800.0
+            }
+          },
+          {
+            "year": 2035,
+            "account_balances": {
+              "401k": 311600.0,
+              "roth_ira": 181900.0
+            }
+          },
+          {
+            "year": 2036,
+            "account_balances": {
+              "401k": 367400.0,
+              "roth_ira": 215600.0
+            }
+          },
+          {
+            "year": 2037,
+            "account_balances": {
+              "401k": 428400.0,
+              "roth_ira": 252300.0
+            }
+          },
+          {
+            "year": 2038,
+            "account_balances": {
+              "401k": 496400.0,
+              "roth_ira": 293000.0
+            }
+          },
+          {
+            "year": 2039,
+            "account_balances": {
+              "401k": 553200.0,
+              "roth_ira": 327400.0
+            }
+          },
+          {
+            "year": 2040,
+            "account_balances": {
+              "401k": 625400.0,
+              "roth_ira": 370700.0
+            }
+          },
+          {
+            "year": 2041,
+            "account_balances": {
+              "401k": 673700.0,
+              "roth_ira": 399500.0
+            }
+          },
+          {
+            "year": 2042,
+            "account_balances": {
+              "401k": 764800.0,
+              "roth_ira": 454000.0
+            }
+          },
+          {
+            "year": 2043,
+            "account_balances": {
+              "401k": 879000.0,
+              "roth_ira": 522000.0
+            }
+          },
+          {
+            "year": 2044,
+            "account_balances": {
+              "401k": 1055800.0,
+              "roth_ira": 626800.0
+            }
+          },
+          {
+            "year": 2045,
+            "account_balances": {
+              "401k": 1159600.0,
+              "roth_ira": 688500.0
+            }
+          },
+          {
+            "year": 2046,
+            "account_balances": {
+              "401k": 1299100.0,
+              "roth_ira": 771000.0
             }
           }
         ]
