@@ -1,0 +1,294 @@
+{% extends "base.html" %}
+
+{% block extra_head %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+    #deltaContent .performance-comparison-table th {
+        background: #1F3A8A !important;
+        color: #F8F5EE !important;
+        border-bottom: 2px solid #162C6D !important;
+    }
+
+    #holdingsContent .holdings-table th {
+        background: #1F3A8A !important;
+        color: #F8F5EE !important;
+        border-bottom: 2px solid #162C6D !important;
+    }
+
+    #deltaContent .performance-comparison-table tbody tr.comparison-row-odd td {
+        background: #F7F4ED !important;
+    }
+
+    #deltaContent .performance-comparison-table tbody tr.comparison-row-even td {
+        background: rgba(31, 58, 138, 0.09) !important;
+    }
+
+    #deltaContent .performance-comparison-table tbody tr.comparison-data-row:hover td {
+        background: rgba(31, 58, 138, 0.15) !important;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="dashboard-controls-shell">
+    <div class="dashboard-controls">
+        <div class="control-group">
+            <label for="userSelect">View:</label>
+            <select id="userSelect" onchange="loadUserData()">
+                <option value="">-- Choose a view --</option>
+                {% if users %}
+                    {% for user in users %}
+                    <option value="{{ user }}" {% if user == selected_user %}selected{% endif %}>{{ user }}</option>
+                    {% endfor %}
+                {% endif %}
+            </select>
+        </div>
+        <div class="control-group" id="deductionControlGroup">
+            <label class="toggle-inline" for="standardDeductionToggle">
+                <input type="checkbox" id="standardDeductionToggle" onchange="onStandardDeductionToggleChange()">
+                <span>Standard Deductions</span>
+            </label>
+            <span class="control-divider" aria-hidden="true"></span>
+            <label class="control-rate-label" for="deductionRateSelect">Withdraw Rate:</label>
+            <select id="deductionRateSelect" onchange="onDeductionRateChange()">
+                <option value="0.05">5%</option>
+                <option value="0.06">6%</option>
+                <option value="0.07">7%</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div class="chart-container">
+    <h2 class="chart-title">Portfolio Projection</h2>
+    <canvas id="retirementChart"></canvas>
+</div>
+
+
+<div id="holdingsSection" class="holdings-section" style="display: none;">
+    <div class="holdings-header">
+        <h2>Current Holdings</h2>
+        <span id="holdingsAsOf" class="holdings-as-of"></span>
+    </div>
+    <div id="holdingsContent">
+        <p class="loading">Select a user to view current holdings</p>
+    </div>
+</div>
+
+<div id="stressTestSection" class="stress-section" style="display: none;">
+    <div class="stress-header">
+        <div>
+            <h2>Retirement Stress Test</h2>
+            <p>Monte Carlo simulation with sequence-of-returns risk (manual refresh)</p>
+        </div>
+        <div style="display:flex; gap:0.6rem; align-items:center; flex-wrap:wrap;">
+            <div class="stress-mode-tabs">
+                <button id="stressTabIndividual" class="stress-tab-btn active" onclick="toggleStressMode('individual')">Individual</button>
+                <button id="stressTabJoint" class="stress-tab-btn" onclick="toggleStressMode('joint')">Household</button>
+            </div>
+            <button onclick="recalculateStressTest()" class="btn-primary" id="recalculateStressBtn">Recalculate Stress Test</button>
+            <button onclick="recalculateJointStressTest()" class="btn-primary" id="recalculateJointBtn" style="display:none;">Recalculate Household</button>
+        </div>
+    </div>
+    <div id="stressTestContent">
+        <p class="loading">Select a user to load the latest stress test result</p>
+    </div>
+</div>
+
+<div id="deltaTable" class="delta-section">
+    <div class="delta-header">
+        <h2>Performance Comparison</h2>
+        <button onclick="showBalanceForm()" class="btn-primary" id="addBalanceBtn" style="display: none;">➕ Add Actual Balance</button>
+    </div>
+    <div id="deltaContent">
+        <p class="loading">Select a user to view comparison data</p>
+    </div>
+</div>
+
+<details class="faq-section faq-disclosure" aria-labelledby="retirementFaqTitle">
+    <summary class="faq-disclosure-summary">
+        <span id="retirementFaqTitle" class="faq-disclosure-title" role="heading" aria-level="2">Frequently Asked Questions</span>
+        <span class="faq-disclosure-description">Planning assumptions, portfolio design, and retirement stress-test details.</span>
+    </summary>
+    <div class="faq-disclosure-content">
+        <div class="faq-list">
+            <details class="faq-item">
+                <summary>Can a self-directed plan help avoid AUM fees?</summary>
+                <div class="faq-answer">
+                    <p>Yes, when you are comfortable maintaining a simple plan. This dashboard is built to make the allocation, contributions, and tradeoffs visible so broad, low-cost funds can be managed directly without an ongoing assets-under-management fee. An advisor can still be valuable for estate, tax, insurance, or complex planning; compare the scope and total cost against the help you actually need.</p>
+                </div>
+            </details>
+            <details class="faq-item">
+                <summary>How diversified is a portfolio with only a few accounts?</summary>
+                <div class="faq-answer">
+                    <p>Account count and diversification are different things. The 401(k), Roth IRA, and optional HSA are tax wrappers; inside them, the configured index funds spread exposure across U.S. large-, mid-, small-, or total-market stocks, international stocks, and bonds. The allocations add more bonds as retirement approaches. The live holdings table shows the current weights, but diversification reduces concentration risk rather than eliminating market loss.</p>
+                </div>
+            </details>
+            <details class="faq-item">
+                <summary>How is the planned retirement year used?</summary>
+                <div class="faq-answer">
+                    <p>The planned retirement year determines when the model shifts from saving and employer-match contributions into withdrawals. Before retirement, the projection applies the saved contribution schedule and portfolio returns. At retirement, it begins the selected withdrawal scenario and accounts for configured Social Security, HSA medical spending, and rental cash flow where applicable.</p>
+                </div>
+            </details>
+            <details class="faq-item">
+                <summary>What do 5%, 6%, and 7% withdrawal rates actually mean?</summary>
+                <div class="faq-answer">
+                    <p>They are first-year spending rates applied to the spendable retirement portfolio. A 6% starting withdrawal is 20% more income than 5%, and 7% is 40% more. In the fixed scenario, that dollar amount then grows with the model's 3% inflation assumption, so the difference compounds over retirement. A lower rate preserves more recovery capacity after poor early returns; a higher rate provides more current income but leaves less margin. The guardrail option instead adjusts spending within its configured band.</p>
+                </div>
+            </details>
+            <details class="faq-item">
+                <summary>Which withdrawal rate is most effective?</summary>
+                <div class="faq-answer">
+                    <p>There is no universally correct rate. Use 5%, 6%, and 7% as comparable spending plans, then weigh the income each provides against its Monte Carlo success probability and the 10th, 50th, and 90th percentile outcomes. The most useful choice is one that covers a realistic spending need while retaining a cushion for weak markets, long life, and changes to the plan.</p>
+                </div>
+            </details>
+            <details class="faq-item">
+                <summary>What assumptions are behind the Monte Carlo stress test?</summary>
+                <div class="faq-answer">
+                    <p>Each refresh runs 10,000 return paths through age 88 using the active allocation for each account. Returns are allocation-weighted and modeled with a lognormal distribution, fat-tailed Student-t shocks, clustered volatility, and a 15% larger negative shock. The test uses 3% inflation, saved contributions before retirement, and configured cash flows. A path succeeds only when it avoids depletion and its inflation-adjusted ending net worth remains at least 10% of its first retirement-year net worth. It is a risk estimate, not a forecast or guarantee.</p>
+                </div>
+            </details>
+            <details class="faq-item">
+                <summary>Why do actual balances differ from the projection?</summary>
+                <div class="faq-answer">
+                    <p>The model uses a defined savings schedule and statistical return assumptions. Actual balances change with market performance, contribution timing, employer matches, rollovers, fund expenses, and withdrawals. The comparison table makes those differences visible so the next projection can start from real balances rather than an outdated estimate.</p>
+                </div>
+            </details>
+        </div>
+    </div>
+</details>
+
+<!-- Balance entry form modal -->
+<div id="balanceModal" class="modal" style="display: none;">
+    <div class="modal-content">
+        <span class="close" onclick="hideBalanceForm()">&times;</span>
+        <h2>Add Actual Balance</h2>
+        <form id="balanceForm" onsubmit="submitBalance(event)">
+            <div class="form-group">
+                <label for="year">Comparison Year:</label>
+                <select id="year" required>
+                    <option value="">-- Select a year --</option>
+                </select>
+                <p class="form-help-text">Uses end-of-year balances (Dec 31 snapshot).</p>
+            </div>
+            
+            <div class="form-group">
+                <label for="balance401k">401k Balance ($):</label>
+                <input type="number" id="balance401k" min="0" step="0.01">
+            </div>
+            
+            <div class="form-group">
+                <label for="balanceIRA">Roth IRA Balance ($):</label>
+                <input type="number" id="balanceIRA" min="0" step="0.01">
+            </div>
+            
+            <div class="form-group">
+                <label for="notes">Notes (optional):</label>
+                <textarea id="notes" rows="2"></textarea>
+            </div>
+            
+            <div class="form-actions">
+                <button type="submit" class="btn-primary">Save</button>
+                <button type="button" class="btn-secondary" onclick="hideBalanceForm()">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Edit balance modal -->
+<div id="editBalanceModal" class="modal" style="display: none;">
+    <div class="modal-content">
+        <span class="close" onclick="hideEditBalanceForm()">&times;</span>
+        <h2>Edit Balance Entry</h2>
+        <form id="editBalanceForm" onsubmit="submitEditBalance(event)">
+            <div class="form-group">
+                <label for="editYear">Comparison Year:</label>
+                <input type="number" id="editYear" min="2000" max="2100" disabled>
+            </div>
+            
+            <div id="balanceFieldsContainer">
+                <!-- Will be populated dynamically based on number of balance IDs -->
+            </div>
+            
+            <div class="form-group">
+                <label for="editNotes">Notes (optional):</label>
+                <textarea id="editNotes" rows="2"></textarea>
+            </div>
+            
+            <div class="form-actions">
+                <button type="submit" class="btn-primary">Update</button>
+                <button type="button" class="btn-secondary" onclick="hideEditBalanceForm()">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script src="/static/js/chart.js?v=20260401-cleanup1"></script>
+<script>
+    // Embed initial data from server
+    const initialData = {{ initial_data | tojson | safe }};
+    const selectedUserInit = '{{ selected_user }}';
+    
+    function renderInitialData() {
+        try {
+            const deltaContent = document.getElementById('deltaContent');
+            const chartElement = document.getElementById('retirementChart');
+            
+            if (!initialData) {
+                if (deltaContent) deltaContent.innerHTML = '<p style="color: red;">ERROR: No data from server</p>';
+                return;
+            }
+            
+            if (!selectedUserInit) {
+                if (deltaContent) deltaContent.innerHTML = '<p style="color: red;">ERROR: No user selected</p>';
+                return;
+            }
+            
+            if (!chartElement) {
+                if (deltaContent) deltaContent.innerHTML = '<p style="color: red;">ERROR: Chart element not found</p>';
+                return;
+            }
+            
+            // Set dropdown value
+            const userSelect = document.getElementById('userSelect');
+            if (userSelect) {
+                userSelect.value = selectedUserInit;
+            }
+            
+            // Show UI elements
+            const addBalanceBtn = document.getElementById('addBalanceBtn');
+            const deltaTable = document.getElementById('deltaTable');
+            if (addBalanceBtn) addBalanceBtn.style.display = 'inline-block';
+            if (deltaTable) deltaTable.style.display = 'block';
+            const stressSection = document.getElementById('stressTestSection');
+            if (stressSection) stressSection.style.display = 'block';
+            
+            // Render immediately from server-provided data and fetch lighter follow-up data in the background.
+            if (typeof window.loadSingleUser === 'function') {
+                window.loadSingleUser(selectedUserInit, initialData);
+            } else {
+                renderSingleUserChart(selectedUserInit, initialData);
+                renderDeltaTable(initialData.deltas);
+                if (typeof window.loadStressTestResult === 'function') {
+                    window.loadStressTestResult(selectedUserInit);
+                }
+            }
+        } catch (error) {
+            const deltaContent = document.getElementById('deltaContent');
+            if (deltaContent) {
+                deltaContent.innerHTML = '<p style="color: red;">Error: ' + error.message + '</p>';
+            }
+        }
+    }
+    
+    // Render on load
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', renderInitialData);
+    } else {
+        renderInitialData();
+    }
+</script>
+{% endblock %}

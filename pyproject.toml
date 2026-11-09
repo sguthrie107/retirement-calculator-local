@@ -1,0 +1,53 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "retirement-calculator"
+version = "0.1.0"
+description = "Financial retirement projection calculator"
+requires-python = ">=3.11"
+dependencies = [
+    # CLI
+    "pandas>=2.0.0",
+    "pyyaml>=6.0",
+    "tabulate>=0.9.0",
+    "rich>=13.0.0",
+    # Web application
+    "fastapi>=0.104.0",
+    "uvicorn[standard]>=0.24.0",
+    "sqlalchemy>=2.0.0",
+    "jinja2>=3.1.0",
+    "python-multipart>=0.0.6",
+    "httpx>=0.27.0",
+    # Request rate limiting
+    "slowapi>=0.1.9",
+    # In-memory cache with TTL support (quote cache in holdings service)
+    "cachetools>=5.3.0",
+    # PostgreSQL driver (production; SQLite used locally by default)
+    "psycopg2-binary>=2.9.0",
+]
+
+[project.optional-dependencies]
+verification = [
+    "numpy-financial>=1.0.0",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0",
+]
+
+[tool.setuptools]
+packages = ["lib"]
+
+[tool.pytest.ini_options]
+# Make the project root importable so `lib` and `app` can be imported
+# without a manual sys.path.insert or requiring `pip install -e .`.
+pythonpath = ["."]
+filterwarnings = [
+    'ignore:.*asyncio\.iscoroutinefunction.*:DeprecationWarning',
+]
+markers = [
+    "external_benchmark: validates financial calculations against numpy-financial",
+]

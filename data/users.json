@@ -1,0 +1,442 @@
+{
+  "users": [
+    {
+      "name": "Steven",
+      "age": 45,
+      "retirement_age": 62,
+      "social_security_claim_age": 67,
+      "withdrawal_pct": 0.04,
+      "withdrawal_order": "proportional",
+      "withdrawal_guardrails": {
+        "enabled": true,
+        "baseline_pct": 0.04,
+        "min_pct": 0.03,
+        "max_pct": 0.05
+      },
+      "chart_seed": {
+        "projected_backcast": {
+          "anchor_year": 2026,
+          "years": [2024, 2025, 2026]
+        },
+        "actual_balances": [
+          {
+            "year": 2024,
+            "account_balances": {
+              "401k": 195000,
+              "roth_ira": 44000
+            }
+          },
+          {
+            "year": 2025,
+            "account_balances": {
+              "401k": 214000,
+              "roth_ira": 50000
+            }
+          },
+          {
+            "year": 2026,
+            "account_balances": {
+              "401k": 230000,
+              "roth_ira": 56000
+            }
+          }
+        ]
+      },
+      "current_401k_balance": 230000,
+      "contribution_details": {
+        "annual_salary": 120000,
+        "annual_contribution_pct": 0.12,
+        "annual_contribution_pct_step_start_year": 2027,
+        "annual_contribution_pct_step_pct": 0.01,
+        "annual_contribution_pct_step_cap_pct": 0.15,
+        "annual_ira_contribution": 7000,
+        "hsa_monthly_contribution": 300,
+        "hsa_contribution_start_year": 2026,
+        "hsa_contribution_growth_pct": 0.03,
+        "company_match_start_year": 2026,
+        "company_match_pct": 0.5,
+        "company_match_employee_cap_pct": 0.06,
+        "salary_increase_pct": 0.03,
+        "contribution_frequency": "biweekly",
+        "company_match_type": "dollar_for_dollar",
+        "company_match_vested_pct": 1.0,
+        "career_transition_age": 62,
+        "career_transition_income_pct": 1.0,
+        "maximize_retirement_contributions": false
+      },
+      "fund_provider": "Fidelity",
+      "current_ira_balance": 56000,
+      "current_hsa_balance": 12000,
+      "current_brokerage_balance": 15000,
+      "dream_career_scenario": {
+        "enabled": false,
+        "transition_age": 60,
+        "whitewater_center": {
+          "hourly_rate_2026_dollars": 25,
+          "weekly_hours": 20
+        },
+        "crossfit_coaching": {
+          "pay_per_class_2026_dollars": 30,
+          "pay_per_class_note": "Sample part-time income",
+          "classes_per_week": 4
+        },
+        "weeks_per_year": 40,
+        "stop_401k_contributions": false,
+        "stop_401k_match": false,
+        "monthly_brokerage_contribution_2026_dollars": 0,
+        "income_inflation_pct": 0.03
+      },
+      "ira_allocation_history": [
+        {
+          "effective_date": "2026-01-01",
+          "phases": {
+            "phase_1": {
+              "name": "Growth",
+              "end_age": 50,
+              "allocation": {
+                "us_total_market": {"pct": 0.5, "ticker": "FZROX", "label": "Fidelity Zero Total Market Index Fund"},
+                "foreign_stock": {"pct": 0.2, "ticker": "VTIAX", "label": "Vanguard Total International Stock Index Fund Admiral Shares"},
+                "us_large_cap": {"pct": 0.3, "ticker": "FXAIX", "label": "Fidelity 500 Index Fund"}
+              }
+            },
+            "phase_2": {
+              "name": "Transition",
+              "end_age": 60,
+              "allocation": {
+                "us_total_market": {"pct": 0.4, "ticker": "FZROX", "label": "Fidelity Zero Total Market Index Fund"},
+                "foreign_stock": {"pct": 0.2, "ticker": "VTIAX", "label": "Vanguard Total International Stock Index Fund Admiral Shares"},
+                "corporate_bonds": {"pct": 0.4, "ticker": "FBND", "label": "Fidelity Corporate Bond Fund"}
+              }
+            },
+            "phase_3": {
+              "name": "Retirement",
+              "end_age": null,
+              "allocation": {
+                "us_total_market": {"pct": 0.3, "ticker": "FZROX", "label": "Fidelity Zero Total Market Index Fund"},
+                "foreign_stock": {"pct": 0.1, "ticker": "VTIAX", "label": "Vanguard Total International Stock Index Fund Admiral Shares"},
+                "corporate_bonds": {"pct": 0.2, "ticker": "FBND", "label": "Fidelity Corporate Bond Fund"},
+                "us_bonds": {"pct": 0.2, "ticker": "FXNAX", "label": "Fidelity U.S. Bond Index Fund"},
+                "intm_bonds": {"pct": 0.2, "ticker": "FIPDX", "label": "Fidelity Intermediate Bond Fund"}
+              }
+            }
+          }
+        }
+      ],
+      "ira_phases": {
+        "phase_1": {
+          "name": "Growth",
+          "end_age": 50,
+          "allocation": {
+            "us_total_market": {"pct": 0.5, "ticker": "FZROX", "label": "Fidelity Zero Total Market Index Fund"},
+            "foreign_stock": {"pct": 0.2, "ticker": "VTIAX", "label": "Vanguard Total International Stock Index Fund Admiral Shares"},
+            "us_large_cap": {"pct": 0.3, "ticker": "FXAIX", "label": "Fidelity 500 Index Fund"}
+          }
+        },
+        "phase_2": {
+          "name": "Transition",
+          "end_age": 60,
+          "allocation": {
+            "us_total_market": {"pct": 0.4, "ticker": "FZROX", "label": "Fidelity Zero Total Market Index Fund"},
+            "foreign_stock": {"pct": 0.2, "ticker": "VTIAX", "label": "Vanguard Total International Stock Index Fund Admiral Shares"},
+            "corporate_bonds": {"pct": 0.4, "ticker": "FBND", "label": "Fidelity Corporate Bond Fund"}
+          }
+        },
+        "phase_3": {
+          "name": "Retirement",
+          "end_age": null,
+          "allocation": {
+            "us_total_market": {"pct": 0.3, "ticker": "FZROX", "label": "Fidelity Zero Total Market Index Fund"},
+            "foreign_stock": {"pct": 0.1, "ticker": "VTIAX", "label": "Vanguard Total International Stock Index Fund Admiral Shares"},
+            "corporate_bonds": {"pct": 0.2, "ticker": "FBND", "label": "Fidelity Corporate Bond Fund"},
+            "us_bonds": {"pct": 0.2, "ticker": "FXNAX", "label": "Fidelity U.S. Bond Index Fund"},
+            "intm_bonds": {"pct": 0.2, "ticker": "FIPDX", "label": "Fidelity Intermediate Bond Fund"}
+          }
+        }
+      },
+      "hsa_phases": {
+        "phase_1": {
+          "name": "Growth",
+          "end_age": null,
+          "allocation": {
+            "us_stock": {"pct": 0.6, "ticker": "FXAIX", "label": "Fidelity 500 Index Fund"},
+            "foreign_stock": {"pct": 0.2, "ticker": "VTIAX", "label": "Vanguard Total International Stock Index Fund Admiral Shares"},
+            "bonds": {"pct": 0.2, "ticker": "BND", "label": "Vanguard Total Bond Market Index Fund"}
+          }
+        }
+      },
+      "401k_phases": {
+        "phase_1": {
+          "name": "Growth",
+          "end_age": 50,
+          "allocation": {
+            "us_stock": {"pct": 0.5, "ticker": "FXAIX", "label": "Fidelity 500 Index Fund"},
+            "mid_cap": {"pct": 0.1, "ticker": "FSMDX", "label": "Fidelity Mid Cap Index Fund"},
+            "small_cap": {"pct": 0.1, "ticker": "FSSNX", "label": "Fidelity Small Cap Index Fund"},
+            "foreign_stock": {"pct": 0.3, "ticker": "VTIAX", "label": "Vanguard Total International Stock Index Fund Admiral Shares"}
+          }
+        },
+        "phase_2": {
+          "name": "Transition",
+          "end_age": 60,
+          "allocation": {
+            "us_stock": {"pct": 0.4, "ticker": "FXAIX", "label": "Fidelity 500 Index Fund"},
+            "foreign_stock": {"pct": 0.2, "ticker": "VTIAX", "label": "Vanguard Total International Stock Index Fund Admiral Shares"},
+            "bonds": {"pct": 0.4, "ticker": "BND", "label": "Vanguard Total Bond Market Index Fund"}
+          }
+        },
+        "phase_3": {
+          "name": "Retirement",
+          "end_age": null,
+          "allocation": {
+            "us_stock": {"pct": 0.3, "ticker": "FXAIX", "label": "Fidelity 500 Index Fund"},
+            "foreign_stock": {"pct": 0.1, "ticker": "VTIAX", "label": "Vanguard Total International Stock Index Fund Admiral Shares"},
+            "bonds": {"pct": 0.6, "ticker": "BND", "label": "Vanguard Total Bond Market Index Fund"}
+          }
+        }
+      }
+    },
+    {
+      "name": "Alyssa",
+      "age": 43,
+      "retirement_age": 62,
+      "social_security_claim_age": 67,
+      "withdrawal_pct": 0.04,
+      "withdrawal_order": "proportional",
+      "withdrawal_guardrails": {
+        "enabled": true,
+        "baseline_pct": 0.04,
+        "min_pct": 0.03,
+        "max_pct": 0.05
+      },
+      "chart_seed": {
+        "projected_backcast": {
+          "anchor_year": 2026,
+          "years": [2024, 2025, 2026]
+        },
+        "actual_balances": [
+          {
+            "year": 2024,
+            "account_balances": {
+              "401k": 160000,
+              "roth_ira": 36000
+            }
+          },
+          {
+            "year": 2025,
+            "account_balances": {
+              "401k": 176000,
+              "roth_ira": 39000
+            }
+          },
+          {
+            "year": 2026,
+            "account_balances": {
+              "401k": 190000,
+              "roth_ira": 41000
+            }
+          }
+        ]
+      },
+      "current_401k_balance": 190000,
+      "contribution_details": {
+        "annual_salary": 95000,
+        "annual_contribution_pct": 0.1,
+        "annual_contribution_pct_step_start_year": 2027,
+        "annual_contribution_pct_step_pct": 0.01,
+        "annual_contribution_pct_step_cap_pct": 0.12,
+        "annual_ira_contribution": 6000,
+        "hsa_monthly_contribution": 150,
+        "hsa_contribution_start_year": 2026,
+        "hsa_contribution_growth_pct": 0.03,
+        "company_match_start_year": 2026,
+        "company_match_pct": 0.5,
+        "company_match_employee_cap_pct": 0.06,
+        "salary_increase_pct": 0.03,
+        "contribution_frequency": "biweekly",
+        "company_match_type": "dollar_for_dollar",
+        "company_match_vested_pct": 1.0,
+        "career_transition_age": 62,
+        "career_transition_income_pct": 1.0,
+        "maximize_retirement_contributions": false
+      },
+      "fund_provider": "Fidelity",
+      "current_ira_balance": 41000,
+      "current_hsa_balance": 8000,
+      "current_brokerage_balance": 6000,
+      "dream_career_scenario": {
+        "enabled": false,
+        "transition_age": 60,
+        "whitewater_center": {
+          "hourly_rate_2026_dollars": 22,
+          "weekly_hours": 15
+        },
+        "crossfit_coaching": {
+          "pay_per_class_2026_dollars": 25,
+          "pay_per_class_note": "Sample part-time income",
+          "classes_per_week": 3
+        },
+        "weeks_per_year": 40,
+        "stop_401k_contributions": false,
+        "stop_401k_match": false,
+        "monthly_brokerage_contribution_2026_dollars": 0,
+        "income_inflation_pct": 0.03
+      },
+      "ira_allocation_history": [
+        {
+          "effective_date": "2026-01-01",
+          "phases": {
+            "phase_1": {
+              "name": "Growth",
+              "end_age": 50,
+              "allocation": {
+                "us_total_market": {"pct": 0.5, "ticker": "FZROX", "label": "Fidelity Zero Total Market Index Fund"},
+                "foreign_stock": {"pct": 0.2, "ticker": "VTIAX", "label": "Vanguard Total International Stock Index Fund Admiral Shares"},
+                "us_large_cap": {"pct": 0.3, "ticker": "FXAIX", "label": "Fidelity 500 Index Fund"}
+              }
+            },
+            "phase_2": {
+              "name": "Transition",
+              "end_age": 60,
+              "allocation": {
+                "us_total_market": {"pct": 0.4, "ticker": "FZROX", "label": "Fidelity Zero Total Market Index Fund"},
+                "foreign_stock": {"pct": 0.2, "ticker": "VTIAX", "label": "Vanguard Total International Stock Index Fund Admiral Shares"},
+                "corporate_bonds": {"pct": 0.4, "ticker": "FBND", "label": "Fidelity Corporate Bond Fund"}
+              }
+            },
+            "phase_3": {
+              "name": "Retirement",
+              "end_age": null,
+              "allocation": {
+                "us_total_market": {"pct": 0.3, "ticker": "FZROX", "label": "Fidelity Zero Total Market Index Fund"},
+                "foreign_stock": {"pct": 0.1, "ticker": "VTIAX", "label": "Vanguard Total International Stock Index Fund Admiral Shares"},
+                "corporate_bonds": {"pct": 0.2, "ticker": "FBND", "label": "Fidelity Corporate Bond Fund"},
+                "us_bonds": {"pct": 0.2, "ticker": "FXNAX", "label": "Fidelity U.S. Bond Index Fund"},
+                "intm_bonds": {"pct": 0.2, "ticker": "FIPDX", "label": "Fidelity Intermediate Bond Fund"}
+              }
+            }
+          }
+        }
+      ],
+      "ira_phases": {
+        "phase_1": {
+          "name": "Growth",
+          "end_age": 50,
+          "allocation": {
+            "us_total_market": {"pct": 0.5, "ticker": "FZROX", "label": "Fidelity Zero Total Market Index Fund"},
+            "foreign_stock": {"pct": 0.2, "ticker": "VTIAX", "label": "Vanguard Total International Stock Index Fund Admiral Shares"},
+            "us_large_cap": {"pct": 0.3, "ticker": "FXAIX", "label": "Fidelity 500 Index Fund"}
+          }
+        },
+        "phase_2": {
+          "name": "Transition",
+          "end_age": 60,
+          "allocation": {
+            "us_total_market": {"pct": 0.4, "ticker": "FZROX", "label": "Fidelity Zero Total Market Index Fund"},
+            "foreign_stock": {"pct": 0.2, "ticker": "VTIAX", "label": "Vanguard Total International Stock Index Fund Admiral Shares"},
+            "corporate_bonds": {"pct": 0.4, "ticker": "FBND", "label": "Fidelity Corporate Bond Fund"}
+          }
+        },
+        "phase_3": {
+          "name": "Retirement",
+          "end_age": null,
+          "allocation": {
+            "us_total_market": {"pct": 0.3, "ticker": "FZROX", "label": "Fidelity Zero Total Market Index Fund"},
+            "foreign_stock": {"pct": 0.1, "ticker": "VTIAX", "label": "Vanguard Total International Stock Index Fund Admiral Shares"},
+            "corporate_bonds": {"pct": 0.2, "ticker": "FBND", "label": "Fidelity Corporate Bond Fund"},
+            "us_bonds": {"pct": 0.2, "ticker": "FXNAX", "label": "Fidelity U.S. Bond Index Fund"},
+            "intm_bonds": {"pct": 0.2, "ticker": "FIPDX", "label": "Fidelity Intermediate Bond Fund"}
+          }
+        }
+      },
+      "hsa_phases": {
+        "phase_1": {
+          "name": "Growth",
+          "end_age": null,
+          "allocation": {
+            "us_stock": {"pct": 0.6, "ticker": "FXAIX", "label": "Fidelity 500 Index Fund"},
+            "foreign_stock": {"pct": 0.2, "ticker": "VTIAX", "label": "Vanguard Total International Stock Index Fund Admiral Shares"},
+            "bonds": {"pct": 0.2, "ticker": "BND", "label": "Vanguard Total Bond Market Index Fund"}
+          }
+        }
+      },
+      "401k_phases": {
+        "phase_1": {
+          "name": "Growth",
+          "end_age": 50,
+          "allocation": {
+            "us_stock": {"pct": 0.5, "ticker": "FXAIX", "label": "Fidelity 500 Index Fund"},
+            "mid_cap": {"pct": 0.1, "ticker": "FSMDX", "label": "Fidelity Mid Cap Index Fund"},
+            "small_cap": {"pct": 0.1, "ticker": "FSSNX", "label": "Fidelity Small Cap Index Fund"},
+            "foreign_stock": {"pct": 0.3, "ticker": "VTIAX", "label": "Vanguard Total International Stock Index Fund Admiral Shares"}
+          }
+        },
+        "phase_2": {
+          "name": "Transition",
+          "end_age": 60,
+          "allocation": {
+            "us_stock": {"pct": 0.4, "ticker": "FXAIX", "label": "Fidelity 500 Index Fund"},
+            "foreign_stock": {"pct": 0.2, "ticker": "VTIAX", "label": "Vanguard Total International Stock Index Fund Admiral Shares"},
+            "bonds": {"pct": 0.4, "ticker": "BND", "label": "Vanguard Total Bond Market Index Fund"}
+          }
+        },
+        "phase_3": {
+          "name": "Retirement",
+          "end_age": null,
+          "allocation": {
+            "us_stock": {"pct": 0.3, "ticker": "FXAIX", "label": "Fidelity 500 Index Fund"},
+            "foreign_stock": {"pct": 0.1, "ticker": "VTIAX", "label": "Vanguard Total International Stock Index Fund Admiral Shares"},
+            "bonds": {"pct": 0.6, "ticker": "BND", "label": "Vanguard Total Bond Market Index Fund"}
+          }
+        }
+      }
+    }
+  ],
+  "household_debts": [
+    {
+      "name": "Sample auto loan",
+      "debt_type": "auto_loan",
+      "participants": ["Steven", "Alyssa"],
+      "principal": 24000,
+      "annual_interest_rate": 0.059,
+      "base_monthly_payment": 480,
+      "additional_monthly_payment_min": 0,
+      "additional_monthly_payment_max": 200
+    }
+  ],
+  "household_assets": [
+    {
+      "name": "Sample primary residence",
+      "asset_type": "residential_real_estate",
+      "participants": ["Steven", "Alyssa"],
+      "include_in_individual_analysis": false,
+      "current_home_value": 550000,
+      "loan_balance": 380000,
+      "annual_interest_rate": 0.0575,
+      "monthly_payment": 2300,
+      "monthly_escrow": 350,
+      "conservative_annual_appreciation_rate": 0.02,
+      "convert_to_rental_after_years": 0,
+      "rental_monthly_premium_over_p_and_i": 0,
+      "vacancy_rate": 0.05,
+      "maintenance_rate": 0.01,
+      "allow_sale_or_refi": false
+    }
+  ],
+  "household_retirement_spending": [
+    {
+      "name": "Base case spending",
+      "participants": ["Steven", "Alyssa"],
+      "retirement_age": 62,
+      "base_year": 2026,
+      "annual_general_living_expenses": 80000,
+      "annual_medical_quality_of_life_expenses": 12000,
+      "expense_adjustments": [
+        {
+          "name": "Travel",
+          "effective_year": 2030,
+          "annual_general_living_expenses_delta": 5000
+        }
+      ]
+    }
+  ]
+}
