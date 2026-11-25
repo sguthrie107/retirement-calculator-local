@@ -3,7 +3,7 @@ from typing import Dict, Any, List, Tuple, Optional
 import pandas as pd
 from pandas import DataFrame
 
-from .data_loader import load_json_file, get_fund_by_ticker
+from .data_loader import get_fund_by_ticker
 from .constants import DATA_FILES
 from .calculator_utils import compute_contribution_pct_for_year, load_users_data
 from .allocation_history import allocation_for_year

@@ -4,7 +4,7 @@ import functools
 import json
 from typing import Any, Dict, List
 
-from .constants import DATA_DIR, DATA_FILES
+from .constants import DATA_DIR
 
 
 @functools.lru_cache(maxsize=16)

@@ -6,7 +6,6 @@ from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 from sqlalchemy.orm import Session
 from pathlib import Path
-import json
 
 from ..database import get_db
 from ..models import User

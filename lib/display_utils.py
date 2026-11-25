@@ -5,7 +5,7 @@ Handles data preparation, merging, and summary calculations for display purposes
 The actual rendering (tabulate, print) remains in calculate.py.
 """
 
-from typing import Dict, List, Tuple, Any
+from typing import Dict, List, Any
 import pandas as pd
 from pandas import DataFrame
 

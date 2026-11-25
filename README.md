@@ -202,16 +202,24 @@ retirement-calculator-local/
 
 ## Testing
 
+Install the development tools and enable the local checks once per clone:
+
 ```powershell
-cd retirement-calculator-local
-uv run pytest -q
+uv sync --group dev --extra verification
+uv run pre-commit install
 ```
 
-Install the optional independent financial benchmark, then run only its parity checks:
+Run lint and tests locally:
 
 ```powershell
-uv sync --extra verification
-uv run pytest tests\test_external_benchmark.py -m external_benchmark -q -s
+uv run ruff check .
+uv run --extra verification pytest -q
+```
+
+To run only the independent financial parity checks:
+
+```powershell
+uv run --extra verification pytest tests\test_external_benchmark.py -m external_benchmark -q -s
 ```
 
 The benchmark uses `numpy-financial` to validate 401(k) mid-year and IRA beginning-of-year contribution timing. It validates calculation timing and arithmetic, not projected returns, fund pricing, tax treatment, or IRS limits.
