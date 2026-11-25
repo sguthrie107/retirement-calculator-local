@@ -21,6 +21,6 @@ jobs:
       - uses: astral-sh/setup-uv@v6
         with:
           enable-cache: true
-      - run: uv sync --frozen --group dev
+      - run: uv sync --frozen --group dev --extra verification
       - run: uv run ruff check .
-      - run: uv run pytest -q
+      - run: uv run --extra verification pytest -q
