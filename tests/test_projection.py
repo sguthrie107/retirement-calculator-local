@@ -28,7 +28,6 @@ from app.services.monte_carlo import (
     _guardrail_adjusted_rate,
     _apply_guardrail_to_withdrawal,
     AssetMoments,
-    RATING_BANDS,
     BOND_LIKE_TICKERS,
     WITHDRAWAL_STRATEGY_PROPORTIONAL,
     WITHDRAWAL_STRATEGY_401K_FIRST,

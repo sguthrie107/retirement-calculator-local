@@ -3,8 +3,8 @@ import pytest
 
 npf = pytest.importorskip("numpy_financial", reason="install .[verification] to run external benchmarks")
 
-from lib import ira
-from lib.plan_by_age import _project_phase
+from lib import ira  # noqa: E402
+from lib.plan_by_age import _project_phase  # noqa: E402
 
 
 @pytest.mark.external_benchmark

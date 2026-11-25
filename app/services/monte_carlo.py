@@ -1858,7 +1858,8 @@ def run_joint_stress_test(
         )
         for i, profile in enumerate(profiles)
     ]
-    retirement_spending_base_year = int(
+    # Validate the configured year even when no simulation years are generated.
+    _ = int(
         household_retirement_spending.get("base_year", current_year)
     ) if household_retirement_spending else current_year
     base_retirement_spending_annual = (

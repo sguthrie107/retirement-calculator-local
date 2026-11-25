@@ -8,7 +8,7 @@ from __future__ import annotations
 
 import logging
 
-from fastapi import APIRouter, HTTPException, Path as FPath, Query
+from fastapi import APIRouter, HTTPException, Path as FPath
 
 from ..services.benchmark import get_benchmark_comparison
 

@@ -202,8 +202,17 @@ retirement-calculator-local/
 
 ## Testing
 
+Install the development tools and enable the local checks once per clone:
+
 ```powershell
-cd retirement-calculator-local
+uv sync --group dev
+uv run pre-commit install
+```
+
+Run lint and tests locally:
+
+```powershell
+uv run ruff check .
 uv run pytest -q
 ```
 
